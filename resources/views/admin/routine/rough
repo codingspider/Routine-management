@@ -1,0 +1,68 @@
+<?php
+
+										$Rows = 7; 
+										$Cols = 5; 
+
+										for($i=1;$i<=$Rows;$i++)
+
+											{  
+												echo '<tr>';
+										for($j=1;$j<=$Cols;$j++)
+										{
+											echo "<td>";
+
+			$data = DB::table('routines')
+			->join('teachers', 'teachers.id', '=', 'routines.teacher_id')
+            ->join('semesters', 'semesters.id', '=', 'routines.semester_id')
+            ->select('routines.*', 'teachers.name', 'semesters.name as sname')
+            ->where('routines.time_slot',$j)
+            ->where('routines.day', $i)
+            ->first();
+
+								      
+								      
+			      	if ($data){
+			          echo "Room Num:" . $data->room_no;
+			          echo "<br>";
+			          echo "Day:" . $data->day;
+			          echo "<br>";
+			          echo "Teacher Name:" . $data->name;
+			          echo "<br>";
+			          echo "Semester :" . $data->sname;
+			      }else{
+			      	echo "";
+			      }
+						echo '</td>';
+					}
+
+					echo '</tr>';
+					}
+						echo '</table>';
+
+										?>
+
+
+
+
+										$data = DB::table('routines')
+			->join('teachers', 'teachers.id', '=', 'routines.teacher_id')
+            ->join('semesters', 'semesters.id', '=', 'routines.semester_id')
+            ->select('routines.*', 'teachers.name', 'semesters.name as sname')
+            ->where('routines.time_slot',$j)
+            ->where('routines.day', $i)
+            ->first();
+
+								      
+								      
+			      	if ($data){
+			          echo "Room Num:" . $data->room_no;
+			          echo "<br>";
+			          echo "Day:" . $data->day;
+			          echo "<br>";
+			          echo "Teacher Name:" . $data->name;
+			          echo "<br>";
+			          echo "Semester :" . $data->sname;
+			      }else{
+			      	echo "";
+
+			      }
